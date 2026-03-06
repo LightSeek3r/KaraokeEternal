@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karaoke Eternal — Menu UI Demo</title>
+  <style>
+    :root {
+      --hue-blue: 209;
+      --hue-pink: 270;
+      --color-gray-8: hsl(209, 10%, 80%);
+      --bg-color: hsl(209, 40%, 2%);
+      --text-color: var(--color-gray-8);
+      --link-color: hsl(209, 92%, 69%);
+      --btn-bg-color: hsl(209, 40%, 30%);
+      --btn-active-filter: drop-shadow(0 0 10px hsla(209, 100%, 100%, .5));
+      --chrome-bg-color: hsla(209, 100%, 5%, .8);
+      --chrome-border-color: hsla(209, 24%, 26%, 0.5);
+      --icon-size-xl: 3rem;
+      --font-size-xs: 0.75rem;
+      --space-xs: 4px;
+      --space-s: 8px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: var(--link-color);
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      color: var(--text-color);
+      font-size: 1.25rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      opacity: 0.7;
+    }
+
+    .demo-section {
+      width: 100%;
+      max-width: 420px;
+      margin-bottom: 2rem;
+    }
+
+    .comparison {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .comparison .demo-section {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .demo-label {
+      text-align: center;
+      font-size: 0.875rem;
+      color: hsl(209, 92%, 69%);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== BEFORE: Old Navigation (icons only) ===== */
+    .nav-before {
+      display: flex;
+      width: 100%;
+      background-color: var(--chrome-bg-color);
+      border-top: 1px solid var(--chrome-border-color);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .nav-before .nav-item {
+      flex: 1;
+      padding: var(--space-xs) 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .nav-before .nav-item svg {
+      height: var(--icon-size-xl);
+      color: var(--btn-bg-color);
+    }
+
+    .nav-before .nav-item.active svg {
+      color: var(--link-color);
+      filter: var(--btn-active-filter) drop-shadow(0 0 1px rgba(0,0,0,1));
+    }
+
+    /* ===== AFTER: New Navigation (icons + labels) ===== */
+    .nav-after {
+      display: flex;
+      width: 100%;
+      background-color: var(--chrome-bg-color);
+      border-top: 1px solid var(--chrome-border-color);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .nav-after .nav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: var(--space-s) 0 var(--space-xs);
+      cursor: pointer;
+      gap: 2px;
+      text-decoration: none;
+    }
+
+    .nav-after .nav-item svg {
+      height: var(--icon-size-xl);
+      color: var(--btn-bg-color);
+    }
+
+    .nav-after .nav-item .label {
+      font-size: var(--font-size-xs);
+      color: var(--btn-bg-color);
+      letter-spacing: 0.02em;
+      transition: color 0.2s ease;
+    }
+
+    .nav-after .nav-item.active svg {
+      color: var(--link-color);
+      filter: var(--btn-active-filter) drop-shadow(0 0 1px rgba(0,0,0,1));
+    }
+
+    .nav-after .nav-item.active .label {
+      color: var(--link-color);
+    }
+
+    /* Hover effects for new nav */
+    .nav-after .nav-item:hover svg {
+      color: hsl(209, 60%, 50%);
+    }
+    .nav-after .nav-item:hover .label {
+      color: hsl(209, 60%, 50%);
+    }
+
+    .description {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-color);
+      opacity: 0.5;
+      margin-top: 2rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎤 Menu UI Improvements</h1>
+  <p style="opacity: 0.6; margin-bottom: 1rem;">Bottom navigation bar — before and after</p>
+
+  <div class="comparison">
+    <div class="demo-section">
+      <div class="demo-label">Before — Icons Only</div>
+      <nav class="nav-before">
+        <div class="nav-item active">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z"/></svg>
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9l-2 2-2-2V3h4v8z"/></svg>
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </div>
+      </nav>
+    </div>
+
+    <div class="demo-section">
+      <div class="demo-label">After — Icons + Labels</div>
+      <nav class="nav-after">
+        <a class="nav-item active" href="#">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z"/></svg>
+          <span class="label">Library</span>
+        </a>
+        <a class="nav-item" href="#">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9l-2 2-2-2V3h4v8z"/></svg>
+          <span class="label">Queue</span>
+        </a>
+        <a class="nav-item" href="#">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          <span class="label">Account</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <h2>Interactive State Demo</h2>
+  <div class="demo-section">
+    <div class="demo-label">Click to switch active tab</div>
+    <nav class="nav-after" id="interactive-nav">
+      <a class="nav-item active" href="#" onclick="switchTab(event, this)">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z"/></svg>
+        <span class="label">Library</span>
+      </a>
+      <a class="nav-item" href="#" onclick="switchTab(event, this)">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9l-2 2-2-2V3h4v8z"/></svg>
+        <span class="label">Queue</span>
+      </a>
+      <a class="nav-item" href="#" onclick="switchTab(event, this)">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        <span class="label">Account</span>
+      </a>
+    </nav>
+  </div>
+
+  <div class="description">
+    <strong>Changes:</strong> Added text labels below navigation icons for clarity.<br>
+    Improved touch targets with better padding. Active state highlights both icon and label.
+  </div>
+
+  <script>
+    function switchTab(e, el) {
+      e.preventDefault();
+      document.querySelectorAll('#interactive-nav .nav-item').forEach(item => item.classList.remove('active'));
+      el.classList.add('active');
+    }
+  </script>
+</body>
+</html>

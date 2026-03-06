@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karaoke Eternal — Visualization Fonts Demo</title>
+  <style>
+    @font-face {
+      font-family: 'Beon';
+      font-style: normal;
+      font-weight: normal;
+      src: url('../assets/fonts/beon.woff2') format('woff2');
+    }
+
+    :root {
+      --hue-blue: 209;
+      --hue-pink: 270;
+      --bg-color: hsl(209, 40%, 2%);
+      --text-color: hsl(209, 10%, 80%);
+      --link-color: hsl(209, 92%, 69%);
+      --chrome-bg-color: hsla(209, 100%, 5%, .8);
+      --chrome-border-color: hsla(209, 24%, 26%, 0.5);
+      --border-radius: 8px;
+      --space-m: 16px;
+      --space-xl: 32px;
+      --drop-shadow-filter: drop-shadow(0 2px 5px #222);
+      --font-family-custom-before: system-ui, sans-serif;
+      --font-family-custom-after: 'Beon', system-ui, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: var(--link-color);
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      color: var(--text-color);
+      font-size: 1.25rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      opacity: 0.7;
+    }
+
+    .subtitle {
+      opacity: 0.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .comparison {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .demo-section {
+      flex: 1;
+      min-width: 320px;
+      max-width: 520px;
+    }
+
+    .demo-label {
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--link-color);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .viz-box {
+      background: radial-gradient(ellipse at center, hsl(209, 30%, 8%) 0%, hsl(209, 40%, 2%) 100%);
+      border: 1px solid var(--chrome-border-color);
+      border-radius: 12px;
+      padding: 2.5rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      min-height: 180px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ===== BEFORE: ColorCycle (system font, old sizing) ===== */
+    .color-cycle-before {
+      font-family: var(--font-family-custom-before);
+      font-size: 5vw;
+      text-rendering: optimizeLegibility;
+      text-shadow: 0px 5px 5px #000;
+    }
+
+    /* ===== AFTER: ColorCycle (Beon font, improved sizing + shadow) ===== */
+    .color-cycle-after {
+      font-family: var(--font-family-custom-after);
+      font-size: clamp(1.5rem, 5vw, 3.5rem);
+      text-rendering: optimizeLegibility;
+      text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.8), 0px 1px 2px rgba(0, 0, 0, 0.6);
+      letter-spacing: 0.05em;
+      font-weight: bold;
+    }
+
+    /* Color cycling animation for characters */
+    .char {
+      animation: color-cycle 10s alternate infinite;
+      display: inline-block;
+    }
+
+    @keyframes color-cycle {
+      0%   { color: red; }
+      16%  { color: orange; }
+      32%  { color: yellow; }
+      49%  { color: green; }
+      66%  { color: blue; }
+      83%  { color: indigo; }
+      100% { color: violet; }
+    }
+
+    /* ===== BEFORE: UpNow user name (system font, old styling) ===== */
+    .upnow-before {
+      font-family: var(--font-family-custom-before);
+      font-size: 6vh;
+      text-rendering: optimizeLegibility;
+      text-shadow: 1px 1px 5px #000;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* ===== AFTER: UpNow user name (Beon font, improved styling) ===== */
+    .upnow-after {
+      font-family: var(--font-family-custom-after);
+      font-size: clamp(2rem, 6vh, 4rem);
+      font-weight: bold;
+      text-rendering: optimizeLegibility;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8), 0px 0px 10px rgba(0, 0, 0, 0.4);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    /* Backdrop pill for ColorCycle text */
+    .backdrop {
+      background-color: var(--chrome-bg-color);
+      border-radius: var(--border-radius);
+      padding: var(--space-m) var(--space-xl);
+    }
+
+    /* User card styling */
+    .user-card {
+      background-color: var(--chrome-bg-color);
+      border: 1px solid var(--chrome-border-color);
+      border-radius: var(--border-radius);
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+
+    .user-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, hsl(270, 62%, 57%), hsl(209, 90%, 50%));
+      margin: 0 auto 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .description {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-color);
+      opacity: 0.5;
+      margin-top: 2.5rem;
+      line-height: 1.6;
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎤 Visualization Fonts Improvements</h1>
+  <p class="subtitle">Player text overlay — before and after</p>
+
+  <h2>ColorCycle Text ("CAN HAZ MOAR SONGZ?")</h2>
+  <div class="comparison">
+    <div class="demo-section">
+      <div class="demo-label">Before — System Font</div>
+      <div class="viz-box">
+        <div class="color-cycle-before backdrop" id="cycle-before"></div>
+      </div>
+    </div>
+    <div class="demo-section">
+      <div class="demo-label">After — Beon Font + Improved Rendering</div>
+      <div class="viz-box">
+        <div class="color-cycle-after backdrop" id="cycle-after"></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>UpNow User Display Name</h2>
+  <div class="comparison">
+    <div class="demo-section">
+      <div class="demo-label">Before — System Font</div>
+      <div class="viz-box">
+        <div class="user-card">
+          <div class="user-avatar">🎤</div>
+          <div class="upnow-before">PartyRocker42</div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-section">
+      <div class="demo-label">After — Beon Font + Improved Rendering</div>
+      <div class="viz-box">
+        <div class="user-card">
+          <div class="user-avatar">🎤</div>
+          <div class="upnow-after">PartyRocker42</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Error State Display</h2>
+  <div class="comparison">
+    <div class="demo-section">
+      <div class="demo-label">Before</div>
+      <div class="viz-box">
+        <div class="color-cycle-before backdrop" id="err-before-1"></div>
+        <div style="height: 0.5rem"></div>
+        <div class="color-cycle-before backdrop" id="err-before-2"></div>
+      </div>
+    </div>
+    <div class="demo-section">
+      <div class="demo-label">After</div>
+      <div class="viz-box">
+        <div class="color-cycle-after backdrop" id="err-after-1"></div>
+        <div style="height: 0.5rem"></div>
+        <div class="color-cycle-after backdrop" id="err-after-2"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="description">
+    <strong>Changes:</strong> Activated the Beon custom neon font for all player visualization text.<br>
+    Improved text sizing with <code>clamp()</code> for responsive readability across screen sizes.<br>
+    Enhanced text shadows with layered RGBA for better contrast against visualizer backgrounds.<br>
+    Added letter-spacing for improved character legibility in the neon style.
+  </div>
+
+  <script>
+    const FRAMERATE = 33;
+
+    function renderColorCycle(containerId, text) {
+      const container = document.getElementById(containerId);
+      const offset = Math.random() * -300;
+      text.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = char;
+        span.style.animationDelay = `${(i - text.length + offset) * FRAMERATE}ms`;
+        container.appendChild(span);
+      });
+    }
+
+    renderColorCycle('cycle-before', 'CAN HAZ MOAR SONGZ?');
+    renderColorCycle('cycle-after', 'CAN HAZ MOAR SONGZ?');
+    renderColorCycle('err-before-1', 'OOPS...');
+    renderColorCycle('err-before-2', 'SEE QUEUE FOR DETAILS');
+    renderColorCycle('err-after-1', 'OOPS...');
+    renderColorCycle('err-after-2', 'SEE QUEUE FOR DETAILS');
+  </script>
+</body>
+</html>
