@@ -38,12 +38,14 @@
 }
 
 .user {
-  font-size: 6vh;
+  font-size: clamp(2rem, 6vh, 4rem);
+  font-weight: bold;
   text-rendering: optimizeLegibility;
-  text-shadow: 1px 1px 5px #000;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8), 0px 0px 10px rgba(0, 0, 0, 0.4);
   text-overflow: ellipsis;
   overflow: hidden;
   max-width: 33vw;
+  letter-spacing: 0.02em;
 }
 
 .userImage {

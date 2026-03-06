@@ -20,7 +20,7 @@
 .btnDrag {
   cursor: grab;
   color: var(--btn-bg-color);
-  height: var(--icon-size-l);
+  height: var(--icon-size-m);
 }
 
 .btnRefresh,
@@ -29,6 +29,6 @@
   padding: var(--space-xs);
 
   svg {
-    height: var(--icon-size-l);
+    height: var(--icon-size-m);
   }
 }
