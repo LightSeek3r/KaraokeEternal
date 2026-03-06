@@ -13,13 +13,24 @@
       --text-color: var(--color-gray-8);
       --link-color: hsl(209, 92%, 69%);
       --btn-bg-color: hsl(209, 40%, 30%);
+      --btn-active-bg-color: hsl(209, 92%, 69%);
       --btn-active-filter: drop-shadow(0 0 10px hsla(209, 100%, 100%, .5));
       --chrome-bg-color: hsla(209, 100%, 5%, .8);
       --chrome-border-color: hsla(209, 24%, 26%, 0.5);
+      --panel-bg-color: hsl(209, 20%, 10%);
       --icon-size-xl: 3rem;
+      --icon-size-l: 2rem;
+      --icon-size-m: 1.5rem;
       --font-size-xs: 0.75rem;
+      --font-size-s: 1rem;
+      --font-size-m: 1.25rem;
       --space-xs: 4px;
       --space-s: 8px;
+      --space-m: 16px;
+      --border-radius: 8px;
+      --box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+      --text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      --container-padding: 12px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -44,9 +55,14 @@
     h2 {
       color: var(--text-color);
       font-size: 1.25rem;
-      margin-top: 2rem;
+      margin-top: 2.5rem;
       margin-bottom: 1rem;
       opacity: 0.7;
+    }
+
+    .subtitle {
+      opacity: 0.6;
+      margin-bottom: 1rem;
     }
 
     .demo-section {
@@ -79,8 +95,8 @@
       letter-spacing: 0.1em;
     }
 
-    /* ===== BEFORE: Old Navigation (icons only) ===== */
-    .nav-before {
+    /* ===== Navigation Bars ===== */
+    .nav-bar {
       display: flex;
       width: 100%;
       background-color: var(--chrome-bg-color);
@@ -89,36 +105,7 @@
       overflow: hidden;
     }
 
-    .nav-before .nav-item {
-      flex: 1;
-      padding: var(--space-xs) 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .nav-before .nav-item svg {
-      height: var(--icon-size-xl);
-      color: var(--btn-bg-color);
-    }
-
-    .nav-before .nav-item.active svg {
-      color: var(--link-color);
-      filter: var(--btn-active-filter) drop-shadow(0 0 1px rgba(0,0,0,1));
-    }
-
-    /* ===== AFTER: New Navigation (icons + labels) ===== */
-    .nav-after {
-      display: flex;
-      width: 100%;
-      background-color: var(--chrome-bg-color);
-      border-top: 1px solid var(--chrome-border-color);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .nav-after .nav-item {
+    .nav-bar .nav-item {
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -129,33 +116,95 @@
       text-decoration: none;
     }
 
-    .nav-after .nav-item svg {
+    .nav-bar .nav-item svg {
       height: var(--icon-size-xl);
       color: var(--btn-bg-color);
     }
 
-    .nav-after .nav-item .label {
+    .nav-bar .nav-item .label {
       font-size: var(--font-size-xs);
       color: var(--btn-bg-color);
       letter-spacing: 0.02em;
       transition: color 0.2s ease;
     }
 
-    .nav-after .nav-item.active svg {
+    .nav-bar .nav-item.active svg {
       color: var(--link-color);
       filter: var(--btn-active-filter) drop-shadow(0 0 1px rgba(0,0,0,1));
     }
 
-    .nav-after .nav-item.active .label {
+    .nav-bar .nav-item.active .label {
       color: var(--link-color);
     }
 
-    /* Hover effects for new nav */
-    .nav-after .nav-item:hover svg {
+    .nav-bar .nav-item:hover svg {
       color: hsl(209, 60%, 50%);
     }
-    .nav-after .nav-item:hover .label {
+    .nav-bar .nav-item:hover .label {
       color: hsl(209, 60%, 50%);
+    }
+
+    /* ===== Settings Panel ===== */
+    .panel {
+      background-color: var(--panel-bg-color);
+      border-radius: 12px;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      padding: var(--space-s) var(--container-padding);
+      color: hsl(209, 10%, 80%);
+      background-image: linear-gradient(135deg, hsl(209,20%,20%) 0%, hsl(209,20%,10%) 100%);
+      font-size: var(--font-size-m);
+      font-weight: 600;
+    }
+
+    .panel-content {
+      padding: var(--container-padding);
+    }
+
+    .path-item {
+      display: flex;
+      align-items: center;
+      background-color: var(--panel-bg-color);
+      padding: var(--space-xs);
+      margin-bottom: var(--space-s);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--chrome-border-color);
+    }
+
+    .path-item .drag-icon {
+      color: var(--btn-bg-color);
+      cursor: grab;
+    }
+
+    .path-item .path-name {
+      flex: 1;
+      font-size: var(--font-size-s);
+      padding: 0 var(--space-s);
+    }
+
+    .path-item .action-btn {
+      color: var(--btn-active-bg-color);
+      padding: var(--space-xs);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .heading-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--space-s);
+      padding: var(--space-s);
+      font-size: var(--font-size-m);
+      color: var(--text-color);
+      background: none;
+      border: none;
+      cursor: pointer;
     }
 
     .description {
@@ -165,70 +214,118 @@
       opacity: 0.5;
       margin-top: 2rem;
       line-height: 1.6;
+      max-width: 700px;
     }
   </style>
 </head>
 <body>
   <h1>🎤 Menu UI Improvements</h1>
-  <p style="opacity: 0.6; margin-bottom: 1rem;">Bottom navigation bar — before and after</p>
+  <p class="subtitle">Navigation icons, menu panel sizing, and lyrics rendering</p>
 
+  <!-- Section 1: Navigation Icons -->
+  <h2>Navigation Icons — Before &amp; After</h2>
   <div class="comparison">
     <div class="demo-section">
-      <div class="demo-label">Before — Icons Only</div>
-      <nav class="nav-before">
-        <div class="nav-item active">
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z"/></svg>
-        </div>
-        <div class="nav-item">
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9l-2 2-2-2V3h4v8z"/></svg>
-        </div>
-        <div class="nav-item">
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-        </div>
+      <div class="demo-label">Before — Old Icons</div>
+      <nav class="nav-bar">
+        <a class="nav-item active" href="#">
+          <!-- Old NAV_LIBRARY: stacked cards + music note -->
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 5h-3v5.5c0 1.38-1.12 2.5-2.5 2.5S10 13.88 10 12.5s1.12-2.5 2.5-2.5c.57 0 1.08.19 1.5.51V5h4v2zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6z"/></svg>
+          <span class="label">Library</span>
+        </a>
+        <a class="nav-item" href="#">
+          <!-- Old NAV_SUBSCRIPTIONS: stacked cards + play -->
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 8H4V6h16v2zm-2-6H6v2h12V2zm4 10v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2v-8c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2zm-6 4l-6-3.27v6.53L16 16z"/></svg>
+          <span class="label">Queue</span>
+        </a>
+        <a class="nav-item" href="#">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2M12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8m3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5m-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.32-1.45 5.12-3.5h-1.67c-.69 1.19-1.97 2-3.45 2s-2.75-.81-3.45-2H6.88c.8 2.05 2.79 3.5 5.12 3.5"/></svg>
+          <span class="label">Account</span>
+        </a>
       </nav>
     </div>
 
     <div class="demo-section">
-      <div class="demo-label">After — Icons + Labels</div>
-      <nav class="nav-after">
-        <a class="nav-item active" href="#">
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z"/></svg>
+      <div class="demo-label">After — New Icons</div>
+      <nav class="nav-bar" id="interactive-nav">
+        <a class="nav-item active" href="#" onclick="switchTab(event, this)">
+          <!-- New NAV_LIBRARY: album disc -->
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5zm0-5.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"/></svg>
           <span class="label">Library</span>
         </a>
-        <a class="nav-item" href="#">
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9l-2 2-2-2V3h4v8z"/></svg>
+        <a class="nav-item" href="#" onclick="switchTab(event, this)">
+          <!-- New NAV_SUBSCRIPTIONS: playlist play -->
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 10h12v2H4zm0-4h12v2H4zm0 8h8v2H4zm10 0v6l5-3z"/></svg>
           <span class="label">Queue</span>
         </a>
-        <a class="nav-item" href="#">
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        <a class="nav-item" href="#" onclick="switchTab(event, this)">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2M12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8m3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5m-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.32-1.45 5.12-3.5h-1.67c-.69 1.19-1.97 2-3.45 2s-2.75-.81-3.45-2H6.88c.8 2.05 2.79 3.5 5.12 3.5"/></svg>
           <span class="label">Account</span>
         </a>
       </nav>
     </div>
   </div>
 
-  <h2>Interactive State Demo</h2>
-  <div class="demo-section">
-    <div class="demo-label">Click to switch active tab</div>
-    <nav class="nav-after" id="interactive-nav">
-      <a class="nav-item active" href="#" onclick="switchTab(event, this)">
-        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z"/></svg>
-        <span class="label">Library</span>
-      </a>
-      <a class="nav-item" href="#" onclick="switchTab(event, this)">
-        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9l-2 2-2-2V3h4v8z"/></svg>
-        <span class="label">Queue</span>
-      </a>
-      <a class="nav-item" href="#" onclick="switchTab(event, this)">
-        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-        <span class="label">Account</span>
-      </a>
-    </nav>
+  <!-- Section 2: Menu Icon Sizing -->
+  <h2>Settings Panel Icons — Before &amp; After</h2>
+  <div class="comparison">
+    <div class="demo-section">
+      <div class="demo-label">Before — Oversized Icons (2rem)</div>
+      <div class="panel">
+        <div class="panel-title">Preferences</div>
+        <div class="panel-content">
+          <button class="heading-btn">
+            <svg style="height: var(--icon-size-l)" viewBox="0 0 24 24"><path fill="currentColor" d="M21,3H3C1.89,3 1,3.89 1,5V17A2,2 0 0,0 3,19H8V21H16V19H21A2,2 0 0,0 23,17V5C23,3.89 22.1,3 21,3M21,17H3V5H21M16,11L9,15V7"/></svg>
+            Player
+          </button>
+          <div class="path-item">
+            <svg class="drag-icon" style="height: var(--icon-size-l)" viewBox="0 0 24 24"><path fill="currentColor" d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+            <span class="path-name">/media/music/karaoke</span>
+            <button class="action-btn"><svg style="height: var(--icon-size-l)" viewBox="0 0 24 24"><path fill="currentColor" d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg></button>
+            <button class="action-btn"><svg style="height: var(--icon-size-l)" viewBox="0 0 24 24"><path fill="currentColor" d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <div class="demo-label">After — Proportional Icons (1.5rem)</div>
+      <div class="panel">
+        <div class="panel-title">Preferences</div>
+        <div class="panel-content">
+          <button class="heading-btn">
+            <svg style="height: var(--icon-size-m)" viewBox="0 0 24 24"><path fill="currentColor" d="M21,3H3C1.89,3 1,3.89 1,5V17A2,2 0 0,0 3,19H8V21H16V19H21A2,2 0 0,0 23,17V5C23,3.89 22.1,3 21,3M21,17H3V5H21M16,11L9,15V7"/></svg>
+            Player
+          </button>
+          <div class="path-item">
+            <svg class="drag-icon" style="height: var(--icon-size-m)" viewBox="0 0 24 24"><path fill="currentColor" d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+            <span class="path-name">/media/music/karaoke</span>
+            <button class="action-btn"><svg style="height: var(--icon-size-m)" viewBox="0 0 24 24"><path fill="currentColor" d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg></button>
+            <button class="action-btn"><svg style="height: var(--icon-size-m)" viewBox="0 0 24 24"><path fill="currentColor" d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: CDG Rendering -->
+  <h2>CDG Lyrics Rendering — Before &amp; After</h2>
+  <div class="comparison">
+    <div class="demo-section">
+      <div class="demo-label">Before — Pixelated (no smoothing)</div>
+      <canvas id="cdg-before" width="300" height="216" style="width: 100%; border-radius: 8px; background: #000;"></canvas>
+    </div>
+    <div class="demo-section">
+      <div class="demo-label">After — Smooth (high quality)</div>
+      <canvas id="cdg-after" width="300" height="216" style="width: 100%; border-radius: 8px; background: #000;"></canvas>
+    </div>
   </div>
 
   <div class="description">
-    <strong>Changes:</strong> Added text labels below navigation icons for clarity.<br>
-    Improved touch targets with better padding. Active state highlights both icon and label.
+    <strong>Changes:</strong><br>
+    1. Replaced Library icon (stacked cards → album disc) and Queue icon (subscriptions → playlist) for better recognition.<br>
+    2. Reduced settings panel icons from 2rem to 1.5rem for better proportion with text.<br>
+    3. Enabled canvas image smoothing with high quality for CDG lyrics rendering — eliminates pixelated text.
   </div>
 
   <script>
@@ -237,6 +334,46 @@
       document.querySelectorAll('#interactive-nav .nav-item').forEach(item => item.classList.remove('active'));
       el.classList.add('active');
     }
+
+    // CDG rendering demo
+    function drawCDGDemo(canvasId, smooth) {
+      const canvas = document.getElementById(canvasId);
+      const ctx = canvas.getContext('2d');
+
+      // Simulate CDG-style text at native 300x216 resolution
+      const offscreen = document.createElement('canvas');
+      offscreen.width = 300;
+      offscreen.height = 216;
+      const offCtx = offscreen.getContext('2d');
+
+      // Dark background
+      offCtx.fillStyle = '#000033';
+      offCtx.fillRect(0, 0, 300, 216);
+
+      // CDG-style lyrics text (simulated low-res source)
+      offCtx.font = 'bold 24px monospace';
+      offCtx.textAlign = 'center';
+
+      // Sung portion (highlighted)
+      offCtx.fillStyle = '#00ccff';
+      offCtx.fillText('Don\'t stop', 100, 100);
+
+      // Upcoming portion
+      offCtx.fillStyle = '#ffffff';
+      offCtx.fillText('believin\'', 220, 100);
+
+      // Second line
+      offCtx.fillStyle = '#ffcc00';
+      offCtx.fillText('Hold on to that', 150, 150);
+
+      // Scale up with smoothing control
+      ctx.imageSmoothingEnabled = smooth;
+      if (smooth) ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(offscreen, 0, 0, canvas.width, canvas.height);
+    }
+
+    drawCDGDemo('cdg-before', false);
+    drawCDGDemo('cdg-after', true);
   </script>
 </body>
 </html>

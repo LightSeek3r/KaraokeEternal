@@ -189,7 +189,8 @@ class CDGPlayer extends React.Component<CDGPlayerProps> {
   paintCDG = (bitmap: ImageBitmap) => {
     const { clientWidth, clientHeight } = this.canvas.current
 
-    this.canvasCtx.imageSmoothingEnabled = false
+    this.canvasCtx.imageSmoothingEnabled = true
+    this.canvasCtx.imageSmoothingQuality = 'high'
     this.canvasCtx.shadowBlur = Math.min(16, clientHeight * this.props.cdgSize * 0.0333)
     this.canvasCtx.shadowColor = 'rgba(0,0,0,1)'
     this.canvasCtx.clearRect(0, 0, clientWidth, clientHeight)
